@@ -60,6 +60,10 @@ class Linkedlist:
         self.head = first.next
         first.next = None
 
+        if self.head.next is None:
+            self.head = None
+            return
+
         temp = self.head
         while temp.next and temp.next.next:
             temp = temp.next
