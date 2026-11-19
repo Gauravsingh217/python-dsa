@@ -7,22 +7,26 @@ class stack:
     def __init__(self):
         self.top = None 
 
-    def isempyt(self):
+    def is_empty(self):
         return self.top is None 
+
     def push(self, new_node):
         new_node.next = self.top 
         self.top = new_node 
 
     def pop(self):
-        if self.isempyt():
+        if self.is_empty():
             print("Stack is empty")
-        else:
-            temp = self.top 
-            print("Popped Elements : ", temp.data)
-            self.top = self.top.next 
-            temp = None 
+            return None
+
+        temp = self.top 
+        self.top = temp.next
+        temp.next = None
+        print("Popped Elements : ", temp.data)
+        return temp.data
+
     def print(self):
-        if self.isempyt():
+        if self.is_empty():
             print("Stack is Empty")
         else:
             print("Stack contains :- ")
@@ -32,18 +36,24 @@ class stack:
                 temp = temp.next 
 
     def reverse(self):
+        prev = None
         temp = self.top
         while temp:
-            st1.push(node(temp.data))
+            next_node = temp.next
+            temp.next = prev
             prev = temp
-            temp = temp.next
-        return prev
+            temp = next_node
+        self.top = prev
 
-sta = stack()
-st1 = stack()
-sta.push(node(10))
-sta.push(node(20))
-sta.push(node(30))
-sta.push(node(40))
-sta.push(node(50))
-sta.print()
+
+if __name__ == "__main__":
+    sta = stack()
+    sta.push(node(10))
+    sta.push(node(20))
+    sta.push(node(30))
+    sta.push(node(40))
+    sta.push(node(50))
+    sta.print()
+    sta.pop()
+    sta.reverse()
+    sta.print()
