@@ -55,6 +55,16 @@ class BST:
         while temp.left is not None:
             temp=temp.left
         return temp
+    def search(self, key):
+        temp=self.root
+        while temp:
+            if temp.data==key:
+                return True
+            elif key<temp.data:
+                temp==temp.left
+            else:
+                temp=temp.right
+        return False
 
     def inorder(self, rt):
         if rt is None:
@@ -119,6 +129,10 @@ b1.inorder(b1.root)
 # b1.postorder(b1.root)
 # b1.findminmax()
 
-b1.del_node(b1.root,500)
+b1.del_node(b1.root,10)
 print("\n After Deletion: ", end=" ")
 b1.inorder(b1.root)
+if b1.search(450):
+    print("\n found the node")
+else:
+    print("\n not found the node")
